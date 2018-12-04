@@ -4,8 +4,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class FileManagerTest {
 
@@ -13,7 +11,6 @@ public class FileManagerTest {
 
     @Test
     public void testReadImage() {
-        System.out.println(Arrays.asList(new File(".").listFiles()));
         FileManager fileManager = new FileManager();
         BufferedImage bufferedImage = fileManager.readImage(filePath1);
         assert(bufferedImage != null);
@@ -21,7 +18,6 @@ public class FileManagerTest {
 
     @Test
     public void testWriteImage() {
-        System.out.println(Arrays.asList(new File(".").listFiles()));
         FileManager fileManager = new FileManager();
         fileManager.readImage(filePath1);
         String expectedFilePath = "src/test/resources/new_test_image_1.png";
