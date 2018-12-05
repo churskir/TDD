@@ -23,6 +23,9 @@ public class FileManager {
     }
 
     public void saveImage(BufferedImage bufferedImage) {
+        if (bufferedImage == null) {
+            return;
+        }
         try {
             ImageIO.write(bufferedImage, getExtension(), new File(dirPath + "new_" + fileName));
         } catch (IOException e) {
