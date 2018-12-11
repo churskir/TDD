@@ -1,3 +1,3 @@
 public enum FilterEnum {
-    GREYSCALE
+    GREYSCALE, NEGATIVE
 }

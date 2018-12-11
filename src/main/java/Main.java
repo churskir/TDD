@@ -21,6 +21,10 @@ public class Main {
                 filterEnum = FilterEnum.GREYSCALE;
                 break;
             }
+            case "negative":{
+                filterEnum = FilterEnum.NEGATIVE;
+                break;
+            }
             default: {
                 System.out.println("Unknown filter");
                 exit(2);
@@ -33,6 +37,9 @@ public class Main {
         //TODO: Apply filter
         if (filterEnum.equals(FilterEnum.GREYSCALE)) {
             result = Filters.GreyScaleFilter(image);
+        }
+        else if(filterEnum.equals((FilterEnum.NEGATIVE))){
+            result = Filters.NegativeFilter(image);
         }
 
         fileManager.saveImage(result);
