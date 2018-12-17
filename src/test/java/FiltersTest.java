@@ -64,6 +64,8 @@ public class FiltersTest {
                                 original.getRGB(i, j) != original.getRGB(i, j + 1)
                 ) {
                     assertNotEquals(original.getRGB(i, j), result.getRGB(i, j));
+                } else {
+                    assertEquals(original.getRGB(i, j), result.getRGB(i, j));
                 }
             }
         }
