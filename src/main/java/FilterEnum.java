@@ -1,3 +1,5 @@
 public enum FilterEnum {
-    GREYSCALE, NEGATIVE
+    GREYSCALE,
+    NEGATIVE,
+    ANTIALIASING
 }

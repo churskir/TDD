@@ -21,7 +21,6 @@ public class FiltersTest {
                 assertEquals(color.getBlue(), color.getGreen());
             }
         }
-
     }
 
     @Test
@@ -47,6 +46,25 @@ public class FiltersTest {
                 assertEquals(Bresult,colorTest.getBlue());
 
 
+            }
+        }
+    }
+
+    @Test
+    public void AntiAliasingFilterTest() throws Exception{
+        File file = new File("src/test/resources/test_image_2.png");
+        BufferedImage original = ImageIO.read(file);
+        BufferedImage result = Filters.AntiAliasingFilter(original);
+        for(int i = 1; i < result.getWidth() - 1;i++) {
+            for(int j = 1; j < result.getHeight() - 1;j++) {
+                if (
+                        original.getRGB(i, j) != original.getRGB(i - 1, j) ||
+                                original.getRGB(i, j) != original.getRGB(i + 1, j) ||
+                                original.getRGB(i, j) != original.getRGB(i, j - 1) ||
+                                original.getRGB(i, j) != original.getRGB(i, j + 1)
+                ) {
+                    assertNotEquals(original.getRGB(i, j), result.getRGB(i, j));
+                }
             }
         }
     }

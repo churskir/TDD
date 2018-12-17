@@ -21,8 +21,12 @@ public class Main {
                 filterEnum = FilterEnum.GREYSCALE;
                 break;
             }
-            case "negative":{
+            case "negative": {
                 filterEnum = FilterEnum.NEGATIVE;
+                break;
+            }
+            case "antialiasing": {
+                filterEnum = FilterEnum.ANTIALIASING;
                 break;
             }
             default: {
@@ -34,12 +38,14 @@ public class Main {
         BufferedImage image = fileManager.readImage(fileName);
         BufferedImage result = null;
 
-        //TODO: Apply filter
         if (filterEnum.equals(FilterEnum.GREYSCALE)) {
             result = Filters.GreyScaleFilter(image);
         }
-        else if(filterEnum.equals((FilterEnum.NEGATIVE))){
+        else if (filterEnum.equals((FilterEnum.NEGATIVE))){
             result = Filters.NegativeFilter(image);
+        }
+        else if (filterEnum.equals(FilterEnum.ANTIALIASING)) {
+            result = Filters.AntiAliasingFilter(image);
         }
 
         fileManager.saveImage(result);

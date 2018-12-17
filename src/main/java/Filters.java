@@ -33,4 +33,34 @@ public class Filters {
         }
         return newBufferedImage;
     }
+
+    public static BufferedImage AntiAliasingFilter(BufferedImage oldImage) {
+        BufferedImage result = new BufferedImage(oldImage.getWidth(), oldImage.getHeight(), oldImage.getType());
+        for (int i = 0; i < result.getWidth(); i ++) {
+            for (int j = 0; j < result.getHeight(); j++) {
+                if (i == 0 || j == 0 || i == result.getWidth() - 1 || j == result.getHeight() - 1) {
+                    result.setRGB(i, j, oldImage.getRGB(i, j));
+                } else {
+                    result.setRGB(
+                            i,
+                            j,
+                            getAverageColor(
+                                    new Color(oldImage.getRGB(i - 1, j)),
+                                    new Color(oldImage.getRGB(i, j - 1)),
+                                    new Color(oldImage.getRGB(i + 1, j)),
+                                    new Color(oldImage.getRGB(i, j + 1))
+                            ).getRGB());
+                }
+            }
+        }
+        return result;
+    }
+
+    private static Color getAverageColor(Color a, Color b, Color c, Color d) {
+        return new Color(
+                (a.getRed() + b.getRed() + c.getRed() + d.getRed()) / 4,
+                (a.getGreen() + b.getGreen() + c.getGreen() + d.getGreen()) / 4,
+                (a.getBlue() + b.getBlue() + c.getBlue() + d.getBlue()) / 4
+        );
+    }
 }
